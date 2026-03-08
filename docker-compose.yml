@@ -28,8 +28,8 @@ services:
         condition: service_healthy
     environment:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-      DEV_LOGIN: ${DEV_LOGIN}
       AUTH_SECRET: ${AUTH_SECRET}
+      DEV_LOGIN: ${DEV_LOGIN}
     ports:
       - "5173"
     networks:

@@ -11,6 +11,9 @@ COPY . .
 
 RUN pnpm install
 
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
 EXPOSE 5173
 
-CMD ["bash", "-lc", "export DATABASE_URL=\"postgresql://webstudio:${POSTGRES_PASSWORD}@db:5432/webstudio\" && export DEV_LOGIN=\"${DEV_LOGIN}\" && export AUTH_SECRET=\"${AUTH_SECRET}\" && pnpm migrations migrate && pnpm dev --host 0.0.0.0 --port 5173"]
+CMD ["/entrypoint.sh"]
