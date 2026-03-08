@@ -14,7 +14,7 @@ services:
       test: ["CMD-SHELL", "pg_isready -U webstudio -d webstudio"]
       interval: 10s
       timeout: 5s
-      retries: 10
+      retries: 20
     networks:
       - internal
 
@@ -27,11 +27,9 @@ services:
       db:
         condition: service_healthy
     environment:
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       DEV_LOGIN: ${DEV_LOGIN}
       AUTH_SECRET: ${AUTH_SECRET}
-      DATABASE_URL: postgresql://webstudio:${POSTGRES_PASSWORD}@db:5432/webstudio
-      HOST: 0.0.0.0
-      PORT: 5173
     ports:
       - "5173"
     networks:
